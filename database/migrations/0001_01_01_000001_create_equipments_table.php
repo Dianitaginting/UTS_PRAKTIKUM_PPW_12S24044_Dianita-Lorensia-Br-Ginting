@@ -11,19 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-    Schema::create('equipments', function (Blueprint $table) {
-    $table->id();
-    $table->foreignId('category_id')->constrained('categories')->onDelete('restrict');
-    $table->string('asset_code', 20)->unique();
-    $table->string('name', 150);
-    $table->text('specification');
-    $table->enum('condition', ['baik', 'rusak_ringan', 'rusak_berat'])->default('baik');
-    $table->enum('status', ['tersedia', 'dipinjam', 'dalam_perbaikan'])->default('tersedia');
-    $table->integer('daily_rental_fee');
-    $table->string('image_path', 255)->nullable();
-    $table->timestamps();
-    });
-
+        Schema::create('equipments', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('category_id')->constrained('categories')->onDelete('restrict');
+            $table->string('asset_code', 20)->unique();
+            $table->string('name', 150);
+            $table->text('specification');
+            $table->enum('condition', ['baik', 'rusak_ringan', 'rusak_berat'])->default('baik');
+            $table->enum('status', ['tersedia', 'dipinjam', 'dalam_perbaikan'])->default('tersedia');
+            $table->integer('daily_rental_fee');
+            $table->string('image_path', 255)->nullable();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -31,7 +30,8 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('cache');
-        Schema::dropIfExists('cache_locks');
+        Schema::dropIfExists('equipments');
     }
 };
+
+
